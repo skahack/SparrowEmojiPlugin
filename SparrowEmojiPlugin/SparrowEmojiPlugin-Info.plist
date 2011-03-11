@@ -26,5 +26,12 @@
 	<string>Copyright © 2011 __MyCompanyName__. All rights reserved.</string>
 	<key>NSPrincipalClass</key>
 	<string></string>
+	<key>SIMBLTargetApplications</key>
+	<array>
+		<dict>
+			<key>BundleIdentifier</key>
+			<string>com.sparrowmailapp.sparrow</string>
+		</dict>
+	</array>
 </dict>
 </plist>

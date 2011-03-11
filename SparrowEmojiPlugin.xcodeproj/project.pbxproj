@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		85EAFE071328975300D105A0 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85EAFE061328975300D105A0 /* Cocoa.framework */; };
 		85EAFE111328975300D105A0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 85EAFE0F1328975300D105A0 /* InfoPlist.strings */; };
+		85EAFE1A1328982700D105A0 /* SparrowEmojiPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EAFE191328982700D105A0 /* SparrowEmojiPlugin.m */; };
+		85EAFE1F13289BED00D105A0 /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EAFE1E13289BED00D105A0 /* JRSwizzle.m */; };
+		85EAFE2C132A68EE00D105A0 /* SparrowEmojiPlugin+Docomo.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EAFE2B132A68ED00D105A0 /* SparrowEmojiPlugin+Docomo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -17,9 +20,15 @@
 		85EAFE091328975300D105A0 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		85EAFE0A1328975300D105A0 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		85EAFE0B1328975300D105A0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		85EAFE0E1328975300D105A0 /* SparrowEmojiPlugin-Info.plist */ = {isa = PBXFileReference; path = "SparrowEmojiPlugin-Info.plist"; sourceTree = "<group>"; };
+		85EAFE0E1328975300D105A0 /* SparrowEmojiPlugin-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SparrowEmojiPlugin-Info.plist"; sourceTree = "<group>"; };
 		85EAFE101328975300D105A0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		85EAFE121328975300D105A0 /* SparrowEmojiPlugin-Prefix.pch */ = {isa = PBXFileReference; path = "SparrowEmojiPlugin-Prefix.pch"; sourceTree = "<group>"; };
+		85EAFE121328975300D105A0 /* SparrowEmojiPlugin-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SparrowEmojiPlugin-Prefix.pch"; sourceTree = "<group>"; };
+		85EAFE181328982700D105A0 /* SparrowEmojiPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SparrowEmojiPlugin.h; path = SparrowEmojiPlugin/Classes/SparrowEmojiPlugin.h; sourceTree = "<group>"; };
+		85EAFE191328982700D105A0 /* SparrowEmojiPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SparrowEmojiPlugin.m; path = SparrowEmojiPlugin/Classes/SparrowEmojiPlugin.m; sourceTree = "<group>"; };
+		85EAFE1D13289BED00D105A0 /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JRSwizzle.h; path = JRSwizzle/JRSwizzle.h; sourceTree = "<group>"; };
+		85EAFE1E13289BED00D105A0 /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JRSwizzle.m; path = JRSwizzle/JRSwizzle.m; sourceTree = "<group>"; };
+		85EAFE2A132A68EC00D105A0 /* SparrowEmojiPlugin+Docomo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SparrowEmojiPlugin+Docomo.h"; path = "SparrowEmojiPlugin/Classes/SparrowEmojiPlugin+Docomo.h"; sourceTree = "<group>"; };
+		85EAFE2B132A68ED00D105A0 /* SparrowEmojiPlugin+Docomo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "SparrowEmojiPlugin+Docomo.m"; path = "SparrowEmojiPlugin/Classes/SparrowEmojiPlugin+Docomo.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +47,7 @@
 			isa = PBXGroup;
 			children = (
 				85EAFE0C1328975300D105A0 /* SparrowEmojiPlugin */,
+				85EAFE1C13289BBB00D105A0 /* JRSwizzle */,
 				85EAFE051328975300D105A0 /* Frameworks */,
 				85EAFE041328975300D105A0 /* Products */,
 			);
@@ -73,6 +83,7 @@
 		85EAFE0C1328975300D105A0 /* SparrowEmojiPlugin */ = {
 			isa = PBXGroup;
 			children = (
+				85EAFE1B132898E200D105A0 /* Classes */,
 				85EAFE0D1328975300D105A0 /* Supporting Files */,
 			);
 			path = SparrowEmojiPlugin;
@@ -86,6 +97,27 @@
 				85EAFE121328975300D105A0 /* SparrowEmojiPlugin-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		85EAFE1B132898E200D105A0 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				85EAFE181328982700D105A0 /* SparrowEmojiPlugin.h */,
+				85EAFE191328982700D105A0 /* SparrowEmojiPlugin.m */,
+				85EAFE2A132A68EC00D105A0 /* SparrowEmojiPlugin+Docomo.h */,
+				85EAFE2B132A68ED00D105A0 /* SparrowEmojiPlugin+Docomo.m */,
+			);
+			name = Classes;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		85EAFE1C13289BBB00D105A0 /* JRSwizzle */ = {
+			isa = PBXGroup;
+			children = (
+				85EAFE1D13289BED00D105A0 /* JRSwizzle.h */,
+				85EAFE1E13289BED00D105A0 /* JRSwizzle.m */,
+			);
+			name = JRSwizzle;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,6 +178,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85EAFE1A1328982700D105A0 /* SparrowEmojiPlugin.m in Sources */,
+				85EAFE1F13289BED00D105A0 /* JRSwizzle.m in Sources */,
+				85EAFE2C132A68EE00D105A0 /* SparrowEmojiPlugin+Docomo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,6 +281,7 @@
 				85EAFE171328975300D105A0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
