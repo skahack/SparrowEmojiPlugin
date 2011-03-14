@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8591E9A9132B5DEF008A9E4D /* SparrowEmojiPlugin+Softbank.m in Sources */ = {isa = PBXBuildFile; fileRef = 8591E9A8132B5DEF008A9E4D /* SparrowEmojiPlugin+Softbank.m */; };
 		85EAFE071328975300D105A0 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85EAFE061328975300D105A0 /* Cocoa.framework */; };
 		85EAFE111328975300D105A0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 85EAFE0F1328975300D105A0 /* InfoPlist.strings */; };
 		85EAFE1A1328982700D105A0 /* SparrowEmojiPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EAFE191328982700D105A0 /* SparrowEmojiPlugin.m */; };
@@ -15,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8591E9A7132B5DEF008A9E4D /* SparrowEmojiPlugin+Softbank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SparrowEmojiPlugin+Softbank.h"; path = "SparrowEmojiPlugin/Classes/SparrowEmojiPlugin+Softbank.h"; sourceTree = "<group>"; };
+		8591E9A8132B5DEF008A9E4D /* SparrowEmojiPlugin+Softbank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "SparrowEmojiPlugin+Softbank.m"; path = "SparrowEmojiPlugin/Classes/SparrowEmojiPlugin+Softbank.m"; sourceTree = "<group>"; };
 		85EAFE031328975300D105A0 /* SparrowEmojiPlugin.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SparrowEmojiPlugin.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		85EAFE061328975300D105A0 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		85EAFE091328975300D105A0 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -106,6 +109,8 @@
 				85EAFE191328982700D105A0 /* SparrowEmojiPlugin.m */,
 				85EAFE2A132A68EC00D105A0 /* SparrowEmojiPlugin+Docomo.h */,
 				85EAFE2B132A68ED00D105A0 /* SparrowEmojiPlugin+Docomo.m */,
+				8591E9A7132B5DEF008A9E4D /* SparrowEmojiPlugin+Softbank.h */,
+				8591E9A8132B5DEF008A9E4D /* SparrowEmojiPlugin+Softbank.m */,
 			);
 			name = Classes;
 			path = ..;
@@ -181,6 +186,7 @@
 				85EAFE1A1328982700D105A0 /* SparrowEmojiPlugin.m in Sources */,
 				85EAFE1F13289BED00D105A0 /* JRSwizzle.m in Sources */,
 				85EAFE2C132A68EE00D105A0 /* SparrowEmojiPlugin+Docomo.m in Sources */,
+				8591E9A9132B5DEF008A9E4D /* SparrowEmojiPlugin+Softbank.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

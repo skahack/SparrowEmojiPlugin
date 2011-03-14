@@ -20,6 +20,7 @@
 +(void)load;
 - (BOOL)isEmojiAddress:(NSString *)address;
 - (BOOL)isDoCoMoAddress:(NSString *)address;
+- (BOOL)isSoftbankAddress:(NSString *)address;
 - (NSString *)replaceEmojiString:(NSString *)message sender:(NSString *)address;
 
 @end
