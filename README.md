@@ -5,7 +5,7 @@ Sparrow Version 1.0.1 (589.15)
 
 Download
 -------------------------
-latest compiled version [here](https://github.com/downloads/SKAhack/SparrowEmojiPlugin/SparrowEmojiPlugin-0.1.0.zip).
+latest compiled version [here](https://github.com/downloads/SKAhack/SparrowEmojiPlugin/SparrowEmojiPlugin.zip).
 
 Instructions
 -------------------------
@@ -15,4 +15,3 @@ Instructions
 ToDo
 -------------------------
 au Emoji support
-softbank(iPhone) Emoji support
