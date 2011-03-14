@@ -122,6 +122,7 @@
         NSData *data = [[NSData alloc] initWithBytes:buffer length:l];
         
         result = [data my_lepStringWithCharset:c];
+        [data release];
         
     } else {
         result = [self my_lepStringWithCharset:charset];
