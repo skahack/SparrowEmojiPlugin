@@ -21,6 +21,7 @@
 - (BOOL)isEmojiAddress:(NSString *)address;
 - (BOOL)isDoCoMoAddress:(NSString *)address;
 - (BOOL)isSoftbankAddress:(NSString *)address;
+- (BOOL)isKddiAddress:(NSString *)address;
 - (NSString *)replaceEmojiString:(NSString *)message sender:(NSString *)address;
 
 @end

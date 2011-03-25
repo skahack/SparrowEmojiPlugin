@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		850C8E92133A7A6B00286017 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 850C8E91133A7A6B00286017 /* libiconv.dylib */; };
+		8533FECF13338AC900510A5C /* SparrowEmojiPlugin+Kddi.m in Sources */ = {isa = PBXBuildFile; fileRef = 8533FECE13338AC900510A5C /* SparrowEmojiPlugin+Kddi.m */; };
 		8591E9A9132B5DEF008A9E4D /* SparrowEmojiPlugin+Softbank.m in Sources */ = {isa = PBXBuildFile; fileRef = 8591E9A8132B5DEF008A9E4D /* SparrowEmojiPlugin+Softbank.m */; };
 		85EAFE071328975300D105A0 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85EAFE061328975300D105A0 /* Cocoa.framework */; };
 		85EAFE111328975300D105A0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 85EAFE0F1328975300D105A0 /* InfoPlist.strings */; };
@@ -16,6 +18,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		850C8E91133A7A6B00286017 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		8533FECD13338AC900510A5C /* SparrowEmojiPlugin+Kddi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SparrowEmojiPlugin+Kddi.h"; path = "SparrowEmojiPlugin/Classes/SparrowEmojiPlugin+Kddi.h"; sourceTree = "<group>"; };
+		8533FECE13338AC900510A5C /* SparrowEmojiPlugin+Kddi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "SparrowEmojiPlugin+Kddi.m"; path = "SparrowEmojiPlugin/Classes/SparrowEmojiPlugin+Kddi.m"; sourceTree = "<group>"; };
 		8591E9A7132B5DEF008A9E4D /* SparrowEmojiPlugin+Softbank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SparrowEmojiPlugin+Softbank.h"; path = "SparrowEmojiPlugin/Classes/SparrowEmojiPlugin+Softbank.h"; sourceTree = "<group>"; };
 		8591E9A8132B5DEF008A9E4D /* SparrowEmojiPlugin+Softbank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "SparrowEmojiPlugin+Softbank.m"; path = "SparrowEmojiPlugin/Classes/SparrowEmojiPlugin+Softbank.m"; sourceTree = "<group>"; };
 		85EAFE031328975300D105A0 /* SparrowEmojiPlugin.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SparrowEmojiPlugin.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -39,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				850C8E92133A7A6B00286017 /* libiconv.dylib in Frameworks */,
 				85EAFE071328975300D105A0 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -67,6 +73,7 @@
 		85EAFE051328975300D105A0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				850C8E91133A7A6B00286017 /* libiconv.dylib */,
 				85EAFE061328975300D105A0 /* Cocoa.framework */,
 				85EAFE081328975300D105A0 /* Other Frameworks */,
 			);
@@ -80,8 +87,10 @@
 				85EAFE0A1328975300D105A0 /* CoreData.framework */,
 				85EAFE0B1328975300D105A0 /* Foundation.framework */,
 			);
+			indentWidth = 2;
 			name = "Other Frameworks";
 			sourceTree = "<group>";
+			tabWidth = 2;
 		};
 		85EAFE0C1328975300D105A0 /* SparrowEmojiPlugin */ = {
 			isa = PBXGroup;
@@ -111,6 +120,8 @@
 				85EAFE2B132A68ED00D105A0 /* SparrowEmojiPlugin+Docomo.m */,
 				8591E9A7132B5DEF008A9E4D /* SparrowEmojiPlugin+Softbank.h */,
 				8591E9A8132B5DEF008A9E4D /* SparrowEmojiPlugin+Softbank.m */,
+				8533FECD13338AC900510A5C /* SparrowEmojiPlugin+Kddi.h */,
+				8533FECE13338AC900510A5C /* SparrowEmojiPlugin+Kddi.m */,
 			);
 			name = Classes;
 			path = ..;
@@ -187,6 +198,7 @@
 				85EAFE1F13289BED00D105A0 /* JRSwizzle.m in Sources */,
 				85EAFE2C132A68EE00D105A0 /* SparrowEmojiPlugin+Docomo.m in Sources */,
 				8591E9A9132B5DEF008A9E4D /* SparrowEmojiPlugin+Softbank.m in Sources */,
+				8533FECF13338AC900510A5C /* SparrowEmojiPlugin+Kddi.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,6 +259,7 @@
 				GCC_PREFIX_HEADER = "SparrowEmojiPlugin/SparrowEmojiPlugin-Prefix.pch";
 				INFOPLIST_FILE = "SparrowEmojiPlugin/SparrowEmojiPlugin-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = bundle;
 			};
@@ -263,6 +276,7 @@
 				GCC_PREFIX_HEADER = "SparrowEmojiPlugin/SparrowEmojiPlugin-Prefix.pch";
 				INFOPLIST_FILE = "SparrowEmojiPlugin/SparrowEmojiPlugin-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = bundle;
 			};

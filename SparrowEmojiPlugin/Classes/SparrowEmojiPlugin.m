@@ -9,9 +9,12 @@
 #import "SparrowEmojiPlugin.h"
 #import "JRSwizzle.h"
 #import <objc/runtime.h>
+#import "iconv.h"
+#include <errno.h>
 
 #import "SparrowEmojiPlugin+Docomo.h"
 #import "SparrowEmojiPlugin+Softbank.h"
+#import "SparrowEmojiPlugin+Kddi.h"
 
 @implementation SparrowEmojiPlugin
 
@@ -52,7 +55,8 @@
 
 - (BOOL)isEmojiAddress:(NSString *)address {
     if ([self isDoCoMoAddress:address] ||
-        [self isSoftbankAddress:address]) {
+        [self isSoftbankAddress:address] ||
+        [self isKddiAddress:address]) {
         return YES;
     }
     return NO;
@@ -75,6 +79,13 @@
     return NO;
 }
 
+- (BOOL)isKddiAddress:(NSString *)address {
+    if ([address hasSuffix:@"ezweb.ne.jp"]) {
+        return YES;
+    }
+    return NO;
+}
+
 - (NSString *)replaceEmojiString:(NSString *)message sender:(NSString *)address {
 
     NSString *str;
@@ -82,6 +93,8 @@
         str = [self replaceDocomoEmoji:message];
     } else if ([self isSoftbankAddress:address]) {
         str = [self replaceSoftbankEmoji:message];
+    } else if ([self isKddiAddress:address]) {
+        str = [self replaceKddiEmoji:message];
     }
     
     return str;
@@ -107,22 +120,61 @@
 - (NSString *)my_lepStringWithCharset:(NSString *)charset {
 
     NSString *result;
-    if ([charset isEqualToString:@"SHIFT_JIS"]) {
-        NSString *s = [NSString stringWithCString:(char *)[self performSelector:@selector(bytes)] encoding:NSShiftJISStringEncoding];
-        NSString *c = @"utf-8";
-        NSUInteger l = [s lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
-        unsigned char *buffer[l];
+    NSString *uppercaseCharset = [charset uppercaseString];
+    if ([uppercaseCharset isEqualToString:@"SHIFT_JIS"]) {
         
-        [s getBytes:buffer maxLength:l usedLength:NULL
+        int encoding = 0;
+        if ([uppercaseCharset isEqualToString:@"SHIFT_JIS"]) {
+            encoding = NSShiftJISStringEncoding;
+        }
+        
+        NSString *s = [NSString stringWithCString:(char *)[self performSelector:@selector(bytes)] encoding:encoding];
+        NSUInteger len = [s lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
+        unsigned char *buffer[len];
+        
+        [s getBytes:buffer maxLength:len usedLength:NULL
            encoding:NSUTF8StringEncoding
             options:NSStringEncodingConversionExternalRepresentation
-              range:NSMakeRange(0, l)
+              range:NSMakeRange(0, len)
      remainingRange:NULL];
         
-        NSData *data = [[NSData alloc] initWithBytes:buffer length:l];
+        NSData *data = [[NSData alloc] initWithBytes:buffer length:len];
         
-        result = [data my_lepStringWithCharset:c];
+        result = [data my_lepStringWithCharset:@"utf-8"];
         [data release];
+        
+    } else if ([uppercaseCharset isEqualToString:@"ISO-2022-JP"]) {
+        
+        SparrowEmojiPlugin *sep = [SparrowEmojiPlugin sharedInstance];
+        
+        size_t inbytesleft = (size_t)[self performSelector:@selector(length)];
+        size_t outbytesleft = inbytesleft * 4;
+        char *inbuf = (char *)[self performSelector:@selector(bytes)];
+        char *outbuf = malloc(outbytesleft + 1);
+        char *old_outbuf = outbuf;
+        
+        iconv_t con = iconv_open("UTF-8", "ISO-2022-JP");
+        if (con == (iconv_t) - 1) {
+            return [self my_lepStringWithCharset:charset];
+        }
+        for (;;) {
+            int convertResult = 0;
+            size_t size = iconv(con, &inbuf, &inbytesleft, &outbuf, &outbytesleft);
+            if (size == (size_t) - 1) {
+                if (errno == EILSEQ) {
+                    convertResult = [sep convertISO2022JPToUTF8:con inbuf:&inbuf inbytesleft:&inbytesleft outbuf:&outbuf outbytesleft:&outbytesleft];
+                }
+                if (errno != EILSEQ || convertResult == 0) {
+                    result = [self my_lepStringWithCharset:charset];
+                    break;
+                }
+            } else {
+                *outbuf = '\0';
+                result = [NSString stringWithCString:old_outbuf encoding:NSUTF8StringEncoding];
+                break;
+            }
+        }
+        iconv_close(con);
         
     } else {
         result = [self my_lepStringWithCharset:charset];
