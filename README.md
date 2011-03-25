@@ -1,7 +1,7 @@
 Support Version
 ====================
 
-Sparrow Version 1.0.1 (589.15)
+Sparrow Version 1.1 (674)
 
 Download
 -------------------------
@@ -14,4 +14,4 @@ Instructions
 
 ToDo
 -------------------------
-au Emoji support
+* iPhone Emoji
