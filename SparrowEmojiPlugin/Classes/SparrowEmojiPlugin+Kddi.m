@@ -711,7 +711,7 @@
         
         *inbuf = _inbuf;
         *outbuf = _outbuf;
-        *inbytesleft += 2;
+        *inbytesleft -= 2;
         *outbytesleft += 3;
         
         return 2;
