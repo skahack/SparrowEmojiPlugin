@@ -663,7 +663,7 @@
     return str;
 }
 
-- (int) convertISO2022JPToUTF8:(iconv_t)con inbuf:(char **)inbuf inbytesleft:(size_t *)inbytesleft outbuf:(char **)outbuf outbytesleft:(size_t *)outbytesleft {
+- (int) convertKDDIISO2022JPToUTF8:(iconv_t)con inbuf:(char **)inbuf inbytesleft:(size_t *)inbytesleft outbuf:(char **)outbuf outbytesleft:(size_t *)outbytesleft {
     
     char *_inbuf = *inbuf, *_outbuf = *outbuf;
     char c1 = _inbuf[0];

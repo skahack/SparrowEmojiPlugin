@@ -15,5 +15,5 @@
 @interface SparrowEmojiPlugin (Kddi)
 
 - (NSString *)replaceKddiEmoji:(NSString *)message;
-- (int) convertISO2022JPToUTF8:(iconv_t)con inbuf:(char **)inbuf inbytesleft:(size_t *)inbytesleft outbuf:(char **)outbuf outbytesleft:(size_t *)outbytesleft;
+- (int) convertKDDIISO2022JPToUTF8:(iconv_t)con inbuf:(char **)inbuf inbytesleft:(size_t *)inbytesleft outbuf:(char **)outbuf outbytesleft:(size_t *)outbytesleft;
 @end

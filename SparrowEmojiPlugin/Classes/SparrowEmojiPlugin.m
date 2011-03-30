@@ -162,7 +162,7 @@
             size_t size = iconv(con, &inbuf, &inbytesleft, &outbuf, &outbytesleft);
             if (size == (size_t) - 1) {
                 if (errno == EILSEQ) {
-                    convertResult = [sep convertISO2022JPToUTF8:con inbuf:&inbuf inbytesleft:&inbytesleft outbuf:&outbuf outbytesleft:&outbytesleft];
+                    convertResult = [sep convertKDDIISO2022JPToUTF8:con inbuf:&inbuf inbytesleft:&inbytesleft outbuf:&outbuf outbytesleft:&outbytesleft];
                 }
                 if (errno != EILSEQ || convertResult == 0) {
                     result = [self my_lepStringWithCharset:charset];
