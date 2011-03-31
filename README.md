@@ -1,9 +1,8 @@
 Support Version
 ====================
-
 Sparrow Version 1.1 (674)
 
-Support Emoji
+Support Emoji(絵文字)
 ====================
 * iPhone Emoji
 * DoCoMo Emoji
@@ -12,7 +11,7 @@ Support Emoji
 
 Download
 -------------------------
-latest compiled version(0.4.1) [here](https://github.com/downloads/SKAhack/SparrowEmojiPlugin/SparrowEmojiPlugin.zip).
+latest compiled version [here](https://github.com/downloads/SKAhack/SparrowEmojiPlugin/SparrowEmojiPlugin.zip).
 
 Instructions
 -------------------------
