@@ -306,7 +306,7 @@
     [str setString:[str stringByReplacingOccurrencesOfString:@"\uE314" withString:[NSString stringWithFormat:@"%@%@%@", f1, @"50F", f2]]];
     [str setString:[str stringByReplacingOccurrencesOfString:@"\uE315" withString:[NSString stringWithFormat:@"%@%@%@", f1, @"B2B", f2]]];
     [str setString:[str stringByReplacingOccurrencesOfString:@"\uE316" withString:[NSString stringWithFormat:@"%@%@%@", f1, @"53C", f2]]];
-    [str setString:[str stringByReplacingOccurrencesOfString:@"\uE317" withString:[NSString stringWithFormat:@"%@%@%@", f1, @"52F", f2]]];
+    [str setString:[str stringByReplacingOccurrencesOfString:@"\uE317" withString:[NSString stringWithFormat:@"%@%@%@", f1, @"530", f2]]];
     [str setString:[str stringByReplacingOccurrencesOfString:@"\uE318" withString:[NSString stringWithFormat:@"%@%@%@", f1, @"4D4", f2]]];
     [str setString:[str stringByReplacingOccurrencesOfString:@"\uE319" withString:[NSString stringWithFormat:@"%@%@%@", f1, @"4D5", f2]]];
     [str setString:[str stringByReplacingOccurrencesOfString:@"\uE31A" withString:[NSString stringWithFormat:@"%@%@%@", f1, @"4D7", f2]]];
