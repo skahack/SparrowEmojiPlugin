@@ -95,6 +95,8 @@
         str = [self replaceSoftbankEmoji:message];
     } else if ([self isKddiAddress:address]) {
         str = [self replaceKddiEmoji:message];
+    } else {
+        str = [self replaceSoftbankEmoji:message];
     }
     
     return str;
@@ -110,9 +112,7 @@
     NSString *address = [[[self performSelector:@selector(header)] performSelector:@selector(from)] performSelector:@selector(mailbox)];
 
     SparrowEmojiPlugin *sep = [SparrowEmojiPlugin sharedInstance];
-    if ([sep isEmojiAddress:address]) {
-        return [sep replaceEmojiString:str sender:address];
-    }
+    return [sep replaceEmojiString:str sender:address];
     
     return str;
 }
@@ -123,25 +123,55 @@
     NSString *uppercaseCharset = [charset uppercaseString];
     if ([uppercaseCharset isEqualToString:@"SHIFT_JIS"]) {
         
-        int encoding = 0;
-        if ([uppercaseCharset isEqualToString:@"SHIFT_JIS"]) {
-            encoding = NSShiftJISStringEncoding;
+        SparrowEmojiPlugin *sep = [SparrowEmojiPlugin sharedInstance];
+        
+        size_t inbytesleft = (size_t)[self performSelector:@selector(length)];
+        size_t outbytesleft = inbytesleft * 4;
+        char *inbuf = (char *)[self performSelector:@selector(bytes)];
+        char *outbuf = malloc(outbytesleft + 1);
+        char *old_outbuf = outbuf;
+        
+        iconv_t con = iconv_open("UTF-8", "SHIFT_JIS");
+        if (con == (iconv_t) - 1) {
+            return [self my_lepStringWithCharset:charset];
         }
-        
-        NSString *s = [NSString stringWithCString:(char *)[self performSelector:@selector(bytes)] encoding:encoding];
-        NSUInteger len = [s lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
-        unsigned char *buffer[len];
-        
-        [s getBytes:buffer maxLength:len usedLength:NULL
-           encoding:NSUTF8StringEncoding
-            options:NSStringEncodingConversionExternalRepresentation
-              range:NSMakeRange(0, len)
-     remainingRange:NULL];
-        
-        NSData *data = [[NSData alloc] initWithBytes:buffer length:len];
-        
-        result = [data my_lepStringWithCharset:@"utf-8"];
-        [data release];
+        for (;;) {
+            unsigned char first = inbuf[0];
+            size_t temp_inbytesleft;
+            size_t convertResult;
+            
+            if (first < 0x80) {
+                temp_inbytesleft = 1;
+                convertResult = iconv(con, &inbuf, &temp_inbytesleft, &outbuf, &outbytesleft);
+                temp_inbytesleft = 1;
+            } else {
+                temp_inbytesleft = 2;
+                if (first == 0xF7 || first == 0xF9 || first == 0xFB) {
+                    convertResult = [sep convertSoftBankSJISToUTF8:con
+                                                             inbuf:&inbuf
+                                                       inbytesleft:&temp_inbytesleft
+                                                            outbuf:&outbuf
+                                                      outbytesleft:&outbytesleft];
+                } else {
+                    convertResult = iconv(con, &inbuf, &temp_inbytesleft, &outbuf, &outbytesleft);
+                }
+                temp_inbytesleft = 2;
+            }
+
+            if (convertResult == (size_t) - 1) {
+                result = [self my_lepStringWithCharset:charset];
+                break;
+            } else {
+                inbytesleft -= temp_inbytesleft;
+            }
+            
+            if (inbytesleft <= 0) {
+                *outbuf = '\0';
+                result = [NSString stringWithCString:old_outbuf encoding:NSUTF8StringEncoding];
+                break;
+            }
+        }
+        iconv_close(con);
         
     } else if ([uppercaseCharset isEqualToString:@"ISO-2022-JP"]) {
         
