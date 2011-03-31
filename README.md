@@ -12,7 +12,7 @@ Support Emoji
 
 Download
 -------------------------
-latest compiled version(0.4.0) [here](https://github.com/downloads/SKAhack/SparrowEmojiPlugin/SparrowEmojiPlugin.zip).
+latest compiled version(0.4.1) [here](https://github.com/downloads/SKAhack/SparrowEmojiPlugin/SparrowEmojiPlugin.zip).
 
 Instructions
 -------------------------
