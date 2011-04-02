@@ -18,6 +18,8 @@
 
 @implementation SparrowEmojiPlugin
 
+@synthesize currentAddress;
+
 + (void)load {
     Class class = objc_getClass("LEPAbstractMessage");
     Class class1 = objc_getClass("NSData");
@@ -108,10 +110,13 @@
 
 - (NSString *)my_mmBodyHTMLRenderingWithAccount:(id)arg1 withWebView:(id)arg2 hideQuoted:(BOOL)arg3 enableActivity:(BOOL)arg4 {
 
-    NSString *str = [self my_mmBodyHTMLRenderingWithAccount:arg1 withWebView:arg2 hideQuoted:arg3 enableActivity:arg4];
-    NSString *address = [[[self performSelector:@selector(header)] performSelector:@selector(from)] performSelector:@selector(mailbox)];
-
     SparrowEmojiPlugin *sep = [SparrowEmojiPlugin sharedInstance];
+    
+    NSString *address = [[[self performSelector:@selector(header)] performSelector:@selector(from)] performSelector:@selector(mailbox)];
+    sep.currentAddress = address;
+    
+    NSString *str = [self my_mmBodyHTMLRenderingWithAccount:arg1 withWebView:arg2 hideQuoted:arg3 enableActivity:arg4];
+
     return [sep replaceEmojiString:str sender:address];
     
     return str;
@@ -119,11 +124,13 @@
 
 - (NSString *)my_lepStringWithCharset:(NSString *)charset {
 
+    SparrowEmojiPlugin *sep = [SparrowEmojiPlugin sharedInstance];
+    
     NSString *result;
     NSString *uppercaseCharset = [charset uppercaseString];
-    if ([uppercaseCharset isEqualToString:@"SHIFT_JIS"]) {
-        
-        SparrowEmojiPlugin *sep = [SparrowEmojiPlugin sharedInstance];
+    if ([uppercaseCharset isEqualToString:@"SHIFT_JIS"] &&
+        ![sep isDoCoMoAddress:sep.currentAddress] &&
+        ![sep isKddiAddress:sep.currentAddress]) {
         
         size_t inbytesleft = (size_t)[self performSelector:@selector(length)];
         size_t outbytesleft = inbytesleft * 4;
@@ -175,8 +182,6 @@
         
     } else if ([uppercaseCharset isEqualToString:@"ISO-2022-JP"]) {
         
-        SparrowEmojiPlugin *sep = [SparrowEmojiPlugin sharedInstance];
-        
         size_t inbytesleft = (size_t)[self performSelector:@selector(length)];
         size_t outbytesleft = inbytesleft * 4;
         char *inbuf = (char *)[self performSelector:@selector(bytes)];
@@ -209,6 +214,8 @@
     } else {
         result = [self my_lepStringWithCharset:charset];
     }
+    
+    sep.currentAddress = @"";
     
     return result;
 }

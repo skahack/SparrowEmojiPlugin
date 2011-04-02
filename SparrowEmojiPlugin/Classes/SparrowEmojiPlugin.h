@@ -11,6 +11,7 @@
 
 @interface SparrowEmojiPlugin : NSObject {
 @private
+    NSString *currentAddress;
 }
 
 + (SparrowEmojiPlugin *)sharedInstance;
@@ -24,4 +25,5 @@
 - (BOOL)isKddiAddress:(NSString *)address;
 - (NSString *)replaceEmojiString:(NSString *)message sender:(NSString *)address;
 
+@property (nonatomic, retain) NSString *currentAddress;
 @end
