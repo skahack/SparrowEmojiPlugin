@@ -1,6 +1,6 @@
 Support Version
 ====================
-Sparrow Version 1.1 (674)
+Sparrow Version 1.1.1 (685)
 
 Support Emoji(絵文字)
 ====================
