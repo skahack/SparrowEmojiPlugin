@@ -17,4 +17,5 @@ Instructions
 -------------------------
 1. SIMBL install [here](http://www.culater.net/software/SIMBL/SIMBL.php).
 2. Put SparrowEmojiPlugin.bundle into ~/Library/Application Support/SIMBL/Plugins/
+3. Relunch Sparrow.app
 
