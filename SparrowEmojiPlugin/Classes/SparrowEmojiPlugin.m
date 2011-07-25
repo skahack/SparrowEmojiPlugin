@@ -24,8 +24,8 @@
     Class class = objc_getClass("LEPAbstractMessage");
     Class class1 = objc_getClass("NSData");
     
-    [class jr_swizzleMethod:@selector(mmBodyHTMLRenderingWithAccount:withWebView:hideQuoted:enableActivity:)
-                  withMethod:@selector(my_mmBodyHTMLRenderingWithAccount:withWebView:hideQuoted:enableActivity:) error:NULL];
+    [class jr_swizzleMethod:@selector(mmBodyHTMLRenderingWithAccount:withWebView:hideQuoted:enableActivity:printing:)
+                 withMethod:@selector(my_mmBodyHTMLRenderingWithAccount:withWebView:hideQuoted:enableActivity:printing:) error:NULL];
     
     [class1 jr_swizzleMethod:@selector(lepStringWithCharset:)
                  withMethod:@selector(my_lepStringWithCharset:) error:NULL];
@@ -108,14 +108,14 @@
 
 @implementation NSObject(SparrowEmojiPlugin)
 
-- (NSString *)my_mmBodyHTMLRenderingWithAccount:(id)arg1 withWebView:(id)arg2 hideQuoted:(BOOL)arg3 enableActivity:(BOOL)arg4 {
+- (NSString *)my_mmBodyHTMLRenderingWithAccount:(id)arg1 withWebView:(id)arg2 hideQuoted:(BOOL)arg3 enableActivity:(BOOL)arg4 printing:(BOOL)arg5 {
 
     SparrowEmojiPlugin *sep = [SparrowEmojiPlugin sharedInstance];
     
     NSString *address = [[[self performSelector:@selector(header)] performSelector:@selector(from)] performSelector:@selector(mailbox)];
     sep.currentAddress = address;
     
-    NSString *str = [self my_mmBodyHTMLRenderingWithAccount:arg1 withWebView:arg2 hideQuoted:arg3 enableActivity:arg4];
+    NSString *str = [self my_mmBodyHTMLRenderingWithAccount:arg1 withWebView:arg2 hideQuoted:arg3 enableActivity:arg4 printing:arg5];
 
     return [sep replaceEmojiString:str sender:address];
     
